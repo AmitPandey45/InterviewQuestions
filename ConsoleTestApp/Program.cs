@@ -10,8 +10,8 @@ namespace ConsoleTestApp
     {
         static void Main(string[] args)
         {
-            CountOccurrence();
-            ////PrintCaseConversion();
+            ////CountOccurrence();
+            PrintCaseConversion();
             ////FarthestFromZero();
             Console.Read();
         }
@@ -39,11 +39,12 @@ namespace ConsoleTestApp
         static void PrintCaseConversion()
         {
             int numberOfInputs = Convert.ToInt32(Console.ReadLine());
+            var result = new StringBuilder();
 
             for (int i = 0; i < numberOfInputs; i++)
             {
                 string input = Console.ReadLine();
-                string result = input.ToLower();
+                result.Append(input.ToLower());
                 bool isUpperCaseChar = false;
                 int numberOfAddedUnderScoreCount = 0;
 
@@ -56,14 +57,16 @@ namespace ConsoleTestApp
 
                     if (j > 0 && isUpperCaseChar)
                     {
-                        result = result.Insert(j + numberOfAddedUnderScoreCount, "_");
+                        result.Insert(j + numberOfAddedUnderScoreCount, "_");
                         numberOfAddedUnderScoreCount++;
                     }
 
                     isUpperCaseChar = false;
                 }
 
-                Console.WriteLine(result);
+                Console.WriteLine(result.ToString());
+
+                result.Clear();
             }
         }
 
