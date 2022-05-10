@@ -10,31 +10,33 @@ namespace ConsoleTestApp
     {
         static void Main(string[] args)
         {
-            ////CountOccurrence();
+            CountOccurrence();
             ////PrintCaseConversion();
-            FarthestFromZero();
+            ////FarthestFromZero();
             Console.Read();
         }
 
         private static void CountOccurrence()
         {
             int numberOfInputs = Convert.ToInt32(Console.ReadLine());
-            List<char> list = new List<char>();
+            char[] inputArray;
             for (int i = 0; i < numberOfInputs; i++)
             {
                 string input = Console.ReadLine();
+                inputArray = input.ToCharArray();
+                ////for (int j = 0; j < input.Length; j++)
+                ////{
+                ////     inputArray.Add(input[j]);
+                ////}
 
-                for (int j = 0; j < input.Length; j++)
-                {
-                     list.Add(input[j]);
-                }
-
-                var result = list.GroupBy(c => c);
+                var result = inputArray.GroupBy(c => c);
 
                 foreach(var grpItem in result)
                 {
                     Console.Write("{0}{1}", grpItem.Key, grpItem.Count());
                 }
+
+                ////list.Clear();
                 Console.Write("\n");
             }
         }
