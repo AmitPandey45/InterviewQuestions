@@ -24,11 +24,6 @@ namespace ConsoleTestApp
             {
                 string input = Console.ReadLine();
                 inputArray = input.ToCharArray();
-                ////for (int j = 0; j < input.Length; j++)
-                ////{
-                ////     inputArray.Add(input[j]);
-                ////}
-
                 var result = inputArray.GroupBy(c => c);
 
                 foreach(var grpItem in result)
@@ -36,7 +31,6 @@ namespace ConsoleTestApp
                     Console.Write("{0}{1}", grpItem.Key, grpItem.Count());
                 }
 
-                ////list.Clear();
                 Console.Write("\n");
             }
         }
