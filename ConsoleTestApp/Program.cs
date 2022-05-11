@@ -122,6 +122,15 @@ namespace ConsoleTestApp
 
             ////string appExecutalePath = Directory.GetCurrentDirectory();
             ////string filePath = $"{appExecutalePath}\\{fileName}";
+            ///
+            var activeData = allMemberAssociatedWithOrg.Where(m => m.RELATIONSHIP_STATUS.Equals("A")).ToList();
+            var  inActiveData= allMemberAssociatedWithOrg.Where(m => m.RELATIONSHIP_STATUS.Equals("I")).ToList();
+
+            DateTime march31_2022 = new DateTime(2022, 03, 31);
+            var activeDataAfter31March2022 = allMemberAssociatedWithOrg
+                .Where(m => m.StartDate >= march31_2022 && m.RELATIONSHIP_STATUS.Equals("A")).ToList();
+            var inActiveDataAfter31March2022 = allMemberAssociatedWithOrg
+                .Where(m => m.StartDate >= march31_2022 && m.RELATIONSHIP_STATUS.Equals("I")).ToList();
         }
     }
 }
