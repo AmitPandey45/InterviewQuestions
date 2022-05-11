@@ -1,4 +1,6 @@
-﻿namespace ConsoleTestApp.Model
+﻿using System;
+
+namespace ConsoleTestApp.Model
 {
     public class MemberOrOrganizationRelationshipItemModel
     {
@@ -13,5 +15,9 @@
         public string START_DATE { get; set; }
 
         public string END_DATE { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using ConsoleTestApp.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -95,7 +96,30 @@ namespace ConsoleTestApp
 
         static void ReadDataFromJsonFile()
         {
+            string s = "19-DEC-52";
+            DateTime dt;
+            DateTime.TryParseExact(s, "dd-MMM-yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dt);
+
             var accountData = JsonFileReader.ReadJsonDataByFileName<MemberOrOrganizationDataModel>(FileName);
+
+            List<MemberOrOrganizationRelationshipItemModel> allMemberAssociatedWithOrg = accountData?.
+                OutputParameters?.
+                X_ACCOUNT_TAB?.
+                X_ACCOUNT_TAB_ITEM?.
+                RELATIONSHIP?.
+                RELATIONSHIP_ITEM;
+
+            foreach(var item in allMemberAssociatedWithOrg)
+            {
+                DateTime.TryParseExact(item.START_DATE.Substring(0, 9), "dd-MMM-yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dt);
+                item.StartDate = dt;
+
+                DateTime.TryParseExact(item.END_DATE.Substring(0, 9), "dd-MMM-yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dt);
+                item.EndDate = dt;
+
+                DateTime.TryParseExact(item.END_DATE, "dd-MMM-yy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dt);
+            }
+
             ////string appExecutalePath = Directory.GetCurrentDirectory();
             ////string filePath = $"{appExecutalePath}\\{fileName}";
         }
