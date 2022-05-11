@@ -1,5 +1,9 @@
-﻿using System;
+﻿using ConsoleTestApp.Extension;
+using ConsoleTestApp.Model;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +12,14 @@ namespace ConsoleTestApp
 {
     class Program
     {
+        const string FileName = "000113065_WattsWater.json";
+
         static void Main(string[] args)
         {
             ////CountOccurrence();
-            PrintCaseConversion();
+            ////PrintCaseConversion();
             ////FarthestFromZero();
+            ReadDataFromJsonFile();
             Console.Read();
         }
 
@@ -35,7 +42,6 @@ namespace ConsoleTestApp
             }
         }
 
-    
         static void PrintCaseConversion()
         {
             int numberOfInputs = Convert.ToInt32(Console.ReadLine());
@@ -85,6 +91,13 @@ namespace ConsoleTestApp
             int maxElement = array.Max();
 
             Console.WriteLine(maxElement);
+        }
+
+        static void ReadDataFromJsonFile()
+        {
+            var accountData = JsonFileReader.ReadJsonDataByFileName<MemberOrOrganizationDataModel>(FileName);
+            ////string appExecutalePath = Directory.GetCurrentDirectory();
+            ////string filePath = $"{appExecutalePath}\\{fileName}";
         }
     }
 }
